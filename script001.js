@@ -22,6 +22,8 @@ const miniPopup = document.querySelector('.mini-popup_js');
 const popupDey = document.querySelector('.popupDey_js');
 const popupRenderDey = document.querySelector('.popupRenderDey_js');
 
+const popupButtonUp = document.querySelector(".popupButtonUp_js");
+
 const fon = document.querySelector('.fon_js');
 
 
@@ -346,7 +348,34 @@ function resetMiniPopup() {
   miniPopup.textContent = 0;
 }
 
-
+// удаляет стрелку пролистования вверх у попапах
+function removeArrowTop(){
+  popupButtonUp.classList.remove('_active');
+}
+// в попапе popupTable если нужно то показует или удаляет стрелку пролистувания вверх
+function arrowAddRemove1() {
+  if (popupTable.getBoundingClientRect().top < 100) {
+    if (!popupButtonUp.classList.contains('_active')) {
+      popupButtonUp.classList.add('_active')
+    }
+  } else {
+    if (popupButtonUp.classList.contains('_active')) {
+      popupButtonUp.classList.remove('_active')
+    }
+  }
+}
+// в попапе popupRenderDey если нужно то показует или удаляет стрелку пролистувания вверх
+function arrowAddRemove2() {
+  if (popupRenderDey.getBoundingClientRect().top < 55) {
+    if (!popupButtonUp.classList.contains('_active')) {
+      popupButtonUp.classList.add('_active')
+    }
+  } else {
+    if (popupButtonUp.classList.contains('_active')) {
+      popupButtonUp.classList.remove('_active')
+    }
+  }
+}
 // <<<<<<<<<<<<<<<< // function >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 // =================== при загрузке странице =============================
@@ -514,6 +543,10 @@ document.addEventListener('click', (e) => {
       // рендерит етот обект в попап
       renderValuePopup(item);
     });
+
+    setTimeout(()=>{
+      arrowAddRemove1(); 
+    }, 200);
   }
 
   // при клики скрывает попап
@@ -522,12 +555,14 @@ document.addEventListener('click', (e) => {
     fon.classList.remove('_active');
     const selectButton = document.querySelector('.select__button_js');
     selectButton.classList.remove('_active');
+    removeArrowTop();
   }
   // при клики скрывает popupDey
   if (e.target.closest('.popupDey__close_js')) {
     popupDey.classList.remove('_active');
     // делает вибранным "самые новые"
     sortValue.options[0].selected = true;
+    arrowAddRemove1();
   }
 
   // при клики сохраняем данные
@@ -751,9 +786,41 @@ document.addEventListener('click', (e) => {
   if (e.target.closest('.popupDey__sort_js')) {
     sortPopupDeyTable();
   }
+  // при клики
+  if (e.target.closest('.popupButtonUp_js')) {
+    handleButtonClick();
+
+    function handleButtonClick() {
+      const popupTop = document.querySelector(".popup_js");
+      const popupDeyTop = document.querySelector(".popupDey_js");
+      if (popupTop.classList.contains('_active')) {
+        popupTop.scroll({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+        });
+      }
+      if (popupDeyTop.classList.contains('_active')) {
+        popupDeyTop.scroll({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+        });
+      }
+    }
+  }
   
 });
 // <<<<<<<<<<<<<<<< // при клике на странице >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+popup.addEventListener('scroll', function (e) {
+  arrowAddRemove1();
+});
+popupDey.addEventListener('scroll', function (e) {
+  arrowAddRemove2();
+});
+
+
 
 // сортировка попапа
 sortValue.addEventListener("change", function () {
@@ -922,21 +989,20 @@ sortValue.addEventListener("change", function () {
             f3();
           }
         }
-        
-
         indexMonths++;
         if (months[indexMonths]){
           f2();
         }
       }
-
       indexYears++
       if (years[indexYears]){
         f1();
       }
       
     }
-    // **************************************************************************************
+    setTimeout(() => {
+      arrowAddRemove2();
+    }, 200);
   }
 
   //<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
