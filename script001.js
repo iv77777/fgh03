@@ -557,6 +557,7 @@ document.addEventListener('click', (e) => {
     popupDey.classList.remove('_active');
     // делает вибранным "самые новые"
     sortValue.options[0].selected = true;
+    popupRenderDey.innerHTML = '';
     arrowAddRemove1();
   }
 
