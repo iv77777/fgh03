@@ -920,6 +920,8 @@ sortValue.addEventListener("change", function () {
   }
   // сортировка Средние по часам.
   if (Number(this.value) == 7) {
+    const selectButton = document.querySelector('.select__button_js');
+    selectButton.classList.remove('_active');
     let indexTable = 1;
     popupRenderDey.innerHTML = '';
     popupDey.classList.add('_active');

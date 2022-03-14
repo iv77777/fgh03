@@ -240,8 +240,13 @@ body{
 
   opacity: 0;
   visibility: hidden;
-}
 
+  transition: all .3s;
+}
+.popup__button-up:active{ 
+  background-color: #c3451db3;
+  transform: scale(1.1);
+}
 .popup__button-up._active{
   opacity: 1;
   visibility: visible;
@@ -306,6 +311,10 @@ body{
   color: var(--background-1);
   margin-bottom: 3px;
   margin-left: -64px;
+}
+.select__button:active{
+  transform: scale(1.02);
+  background-color: var(--background-active);
 }
 .select__button:before{
   display: none;
