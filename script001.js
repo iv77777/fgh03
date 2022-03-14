@@ -2,7 +2,6 @@ const writeInput = document.querySelectorAll('.writeInput_js');
 const buttonColorJs = document.querySelector('#button-color_js');
 const inputColor = document.querySelectorAll('.inputColor_js');
 
-
 const input1Js = document.querySelector('#input-1_js');
 const input2Js = document.querySelector('#input-2_js');
 const input3Js = document.querySelector('#input-3_js');
@@ -26,7 +25,6 @@ const popupButtonUp = document.querySelector(".popupButtonUp_js");
 
 const fon = document.querySelector('.fon_js');
 
-
 // Польот значений
 const audioFly = new Audio("mp3/flight.mp3");
 audioFly.currentTime = 0;
@@ -34,7 +32,6 @@ audioFly.currentTime = 0;
 // клик по клавиатури
 const audioClick = new Audio("mp3/click.mp3");
 audioClick.currentTime = 0;
-
 
 // ключи 
 const keyActiveColor = 'fgh-activeColor';
@@ -100,7 +97,6 @@ function selectInput(element) {
 
   // изменяет цвет кнопок клавиатуры
   changeBgNumbers(element.dataset.background);
-
 
   if (element.id == 'input-1_js') {
     // изменяет цвет бордера клавиатуры на цвет поля input7Js
@@ -408,7 +404,6 @@ if (isEmpty(objectLocalStorage)) {
 
   input1JsInput2Js();
 }
-
 
 // рендерим значения в попап
 const arrayValues = getLocalStorage(oneInputValue, false);
@@ -729,7 +724,6 @@ document.addEventListener('click', (e) => {
 
           // да запускать аудио
           addAudio = true;
-
         }
       });
     } else {
@@ -924,7 +918,6 @@ sortValue.addEventListener("change", function () {
 
     valuesLength.innerText = newArray.length;
   }
- // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   // сортировка Средние по часам.
   if (Number(this.value) == 7) {
     let indexTable = 1;
@@ -1004,8 +997,6 @@ sortValue.addEventListener("change", function () {
       arrowAddRemove2();
     }, 200);
   }
-
-  //<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
   // рендерит таблицы в попап popupRenderDey
   function renderTable(day, month, year, counterTableId, arrayDey){

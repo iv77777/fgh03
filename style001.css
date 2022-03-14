@@ -241,6 +241,7 @@ body{
   opacity: 0;
   visibility: hidden;
 }
+
 .popup__button-up._active{
   opacity: 1;
   visibility: visible;
@@ -533,4 +534,10 @@ body{
   body{
     font-size: 19px;
   }
+}
+
+@media(min-width: 450px){
+  .popup__button-up{
+  right: calc(50% - 200px);
+}
 }
