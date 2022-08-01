@@ -310,7 +310,7 @@ function changeBgNumbers(color) {
 }
 
 // выдиляет дни в календаре
-function addActiveDeyCalendar(obgectDey) {
+function addActiveDeyCalendar (obgectDey){
   const calendarDeyAll = document.querySelectorAll('.calendar__dey_js ');
   calendarDeyAll.forEach(element => {
     element.classList.remove('_active');
@@ -318,8 +318,8 @@ function addActiveDeyCalendar(obgectDey) {
 
   setTimeout(() => {
     const calendarDey = calendarMonthWrapper.querySelector(`._dey${obgectDey.numberDeta}-${obgectDey.month - 1}-${obgectDey.year}`);
-    calendarDey.classList.add('_active');
-  }, 1);
+    calendarDey.classList.add('_active'); 
+  }, 1); 
 }
 // рендерит переданный обект в начало попапа
 function renderValuePopup(arrayValue) {
@@ -460,12 +460,12 @@ function resetMiniPopup() {
 }
 
 // удаляет стрелку пролистования вверх у попапах
-function removeArrowTop() {
+function removeArrowTop(){
   popupButtonUp.classList.remove('_active');
 }
 // в попапе popupTable если нужно то показует или удаляет стрелку пролистувания вверх
 function arrowAddRemove1() {
-  if (popupTable.getBoundingClientRect().top < popupTop.offsetHeight - 3) {
+  if (popupTable.getBoundingClientRect().top < popupTop.offsetHeight -3) {
     if (!popupButtonUp.classList.contains('_active')) {
       popupButtonUp.classList.add('_active')
     }
@@ -678,15 +678,15 @@ document.addEventListener('click', (e) => {
       renderValuePopup(item);
     });
 
-    setTimeout(() => {
-      arrowAddRemove1();
+    setTimeout(()=>{
+      arrowAddRemove1(); 
     }, 200);
   }
 
   // при клики скрывает попап
   if (e.target.closest('.popup__close_js')) {
     const popupTable2Html = document.querySelector('.popup__table2_js');
-    if (popupTable2Html) {
+    if (popupTable2Html){
       popupTable.width = "100%";
       popupTable2Html.remove();
     }
@@ -698,14 +698,14 @@ document.addEventListener('click', (e) => {
   }
 
   // если кликнули по кнопке реверс в попапе
-  if (e.target.closest('.popup__reverse_js')) {
-    e.target.classList.add('_reverse');
+  if (e.target.closest('.popup__reverse_js')){
+    e.target.classList.add('_reverse'); 
     let arrayValue = getLocalStorage(oneInputValue, false);
     valuesLength.innerText = arrayValue.length;
     openSortPopup(arrayValue);
   }
-
-  if (e.target.closest('.calendar__btn_js')) {
+   
+  if (e.target.closest('.calendar__btn_js')){
     calendarPopap.classList.add('_active');
     let arrayValue = getLocalStorage(oneInputValue, false);
     arrayValue.forEach(element => {
@@ -766,7 +766,7 @@ document.addEventListener('click', (e) => {
     saveObgect.value2 = input2Js.value;
     saveObgect.value3 = input5Js.value;
 
-
+    
     let backgroundColor1;
     let backgroundColor2;
 
@@ -958,12 +958,12 @@ document.addEventListener('click', (e) => {
     removeClassAll('.td__value-valueSmall', '_active');
     if (popupReverse.classList.contains('_reverse')) {
       sortPopupDeyTable2();
-    } else if (document.querySelector('.popupDey__sort_js').classList.contains('_twoSort')) {
-      if (document.querySelector('.popupDey__sort_js').classList.contains('_twoSortActive')) {
+    } else if (document.querySelector('.popupDey__sort_js').classList.contains('_twoSort')){
+      if (document.querySelector('.popupDey__sort_js').classList.contains('_twoSortActive')){
         let arrayValue = getLocalStorage(oneInputValue, false);
         openSortPopup(arrayValue, 26);
         document.querySelector('.popupDey__sort_js').classList.remove('_twoSortActive');
-      } else {
+      }else{
         const popupDeyTable = document.querySelectorAll('.popupDeyTable');
         popupRenderDey.innerText = '';
         popupDeySortC(popupDeyTable, popupRenderDey, "big");
@@ -971,7 +971,7 @@ document.addEventListener('click', (e) => {
         document.querySelector('.popupDey__sort_js').classList.add('_twoSortActive');
         addClassAll('.td__value-valueBig', '_active');
       }
-    } else {
+    }else{
       sortPopupDeyTable();
     }
   }
@@ -1015,7 +1015,7 @@ document.addEventListener('click', (e) => {
   if (e.target.closest('.popupButtonUp_js')) {
     scrolling(0);
   }
-
+  
 });
 // <<<<<<<<<<<<<<<< // при клике на странице >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -1050,7 +1050,7 @@ sortValue.addEventListener("change", function () {
       renderValuePopup(item);
     });
   }
-
+    
   // сортировка По значению менше
   if (Number(this.value) == 3) {
     popupTable.innerHTML = '';
@@ -1208,6 +1208,11 @@ sortValue.addEventListener("change", function () {
     document.querySelector('.popupDey__sortC_js').style.display = "block";
     document.querySelector('.popupDey__sortM_js').style.display = 'block';
   }
+  //сортировка Среднее за месяц.
+  if (Number(this.value) == 27) {
+    console.log(27);
+    openSortPopup2(arrayValue, 27);
+  }
 });
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -1257,6 +1262,7 @@ function openSortPopup(arrayValue, sortValueChange) {
     f2();
     function f2() {
       let indexDey = 31;
+
       f3();
       function f3() {
         let arrayDey = [];
@@ -1267,10 +1273,9 @@ function openSortPopup(arrayValue, sortValueChange) {
         });
 
         if (arrayDey.length > 0) {
-
-          if (sortValueChange === 26) {
+          if (sortValueChange === 26){
             renderTable3(indexDey, months[indexMonths], year, indexTable, arrayDey);
-          } else {
+          }else{
             if (!popupReverse.classList.contains('_reverse')) {
               renderTable(indexDey, months[indexMonths], year, indexTable, arrayDey);
             } else {
@@ -1300,6 +1305,80 @@ function openSortPopup(arrayValue, sortValueChange) {
     arrowAddRemove2();
   }, 200);
 }
+function openSortPopup2(arrayValue, sortValueChange) {
+  selectButton.classList.remove('_active');
+  let indexTable = 1;
+  popupRenderDey.innerHTML = '';
+  popupDey.classList.add('_active');
+
+  // все года
+  const years = [];
+  // выбераем года
+  arrayValue.forEach(item => {
+    // если в массиве years нету етого значения то возвращает false если есть то true
+    let i = years.includes(item.year);
+    if (!i) {
+      years.push(item.year)
+    }
+  });
+  // сортируем от большого к меншому
+  years.sort(function (a, b) {
+    return b - a;
+  });
+
+  let indexYears = 0;
+
+  f1();
+  function f1() {
+    let year = years[indexYears];
+    //месеа 
+    const months = [];
+    // выбераем месяца в текущем годе
+    arrayValue.forEach(item => {
+      if (item.year == year) {
+        let i = months.includes(item.month);
+        if (!i) {
+          months.push(item.month)
+        }
+      }
+    });
+    // сортируем от большого к меншому
+    months.sort(function (a, b) {
+      return b - a;
+    });
+    let indexMonths = 0;
+
+    f2();
+    function f2() {
+      let arrayMonth = [];
+      arrayValue.forEach(item => {
+        if (item.month == months[indexMonths] && item.year == year) {
+          arrayMonth.push(item);
+        }
+      });
+
+      if (arrayMonth.length > 0) {
+        renderTable4(months[indexMonths], year, indexTable, arrayMonth);
+        indexTable++;
+      }
+
+      indexMonths++;
+      if (months[indexMonths]) {
+        f2();
+      }
+    }
+    indexYears++
+    if (years[indexYears]) {
+      f1();
+    }
+
+  }
+  setTimeout(() => {
+    arrowAddRemove2();
+  }, 200);
+}
+
+
 function newValuePopup() {
   let arrayValue = getLocalStorage(oneInputValue, false);
   valuesLength.innerText = arrayValue.length;
@@ -1380,6 +1459,50 @@ function renderTable3(day, month, year, counterTableId, arrayDey) {
 
   renderhourse3(itemBig, valueAverage, valueSmall, idTable);
 }
+// рендерит таблицы в попап popupRenderDey
+function renderTable4(month, year, counterTableId, arrayMonth) {
+  console.log('renderTable4()');
+  let idTable = `table${counterTableId}`;
+  let itemBig;
+  let valueSmall;
+  let valueSum = 0;
+  let valueAverage;
+  // больше за месяц
+  arrayMonth.sort(function (a, b) {
+    return b.value - a.value;
+  });
+  itemBig = arrayMonth[0];
+  // -------------------
+  // менше за месяц
+  arrayMonth.sort(function (a, b) {
+    return a.value - b.value;
+  });
+  valueSmall = arrayMonth[0];
+  // --------------------
+  arrayMonth.forEach(item => {
+    valueSum = Number(valueSum) + Number(item.value);
+  });
+  valueAverage = valueSum / arrayMonth.length;
+
+  const months = ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'];
+
+  const htmlTable = `
+      <div class="popupDeyTable popupDeyTable_js _table${month - 1}-${year}" data-big="${itemBig.value}" data-small="${valueSmall.value}" data-average="${valueAverage.toFixed(3)}">
+        <div class="flex-block tebleTitle">
+          <p>${months[month - 1]} ${year}</p>
+          <p>
+          ${arrayMonth.length} зн.
+          </p>
+        </div>
+        <table class="popup__table sortPopupDeyTable_js" id="${idTable}" cellpadding="100" border="2" width="100%">
+
+        </table>
+      </div>
+    `;
+  popupRenderDey.insertAdjacentHTML('beforeend', htmlTable);
+
+  renderhourse4(itemBig, valueAverage, valueSmall, idTable);
+}
 
 // рендерит сортировку Средние по часам в таблицы.
 function renderhourse3(itemBig, valueAverage, valueSmall, idTable) {
@@ -1399,6 +1522,41 @@ function renderhourse3(itemBig, valueAverage, valueSmall, idTable) {
      <tr class="popup__table-tr_js td__value-valueSmall">
         <td class="td__value">мiнiм.з</td>
         <td class="td__value">${valueSmall.date.split(',')[1]}</td>
+        <td class="td__value ${itemBig.background2}">${valueSmall.value1}</td>
+        <td class="td__value ${itemBig.background}">${valueSmall.value}</td>
+      </tr>
+  `;
+  const popupTable = document.querySelector(`#${idTable}`);
+  popupTable.insertAdjacentHTML('beforeend', valueHtml);
+  // popupTable.insertAdjacentHTML('afterbegin', valueHtml);
+}
+// рендерит сортировку Средние по часам в таблицы.
+function renderhourse4(itemBig, valueAverage, valueSmall, idTable) {
+  let month1 = itemBig.month;
+  if (month1 < 10){
+    month1 = `0${itemBig.month}`;
+  }
+  let month2 = valueSmall.month;
+  if (month2 < 10){
+    month2 = `0${valueSmall.month}`;
+  }
+  
+  let valueHtml = `
+     <tr class="popup__table-tr_js td__value-valueBig">
+        <td class="td__value">макс.з</td>
+        <td class="td__value">${itemBig.numberDeta}.${month1}. (${itemBig.date.split(',')[1]})</td>
+        <td class="td__value ${itemBig.background2}">${itemBig.value1}</td>
+        <td class="td__value ${itemBig.background}">${itemBig.value}</td>
+      </tr>
+     <tr class="popup__table-tr_js td__value-valueAverage">
+        <td class="td__value">серед.з</td>
+        <td class="td__value"></td>
+        <td class="td__value ${itemBig.background2}">${itemBig.value1}</td>
+        <td class="td__value ${itemBig.background}">${valueAverage.toFixed(3)}</td>
+      </tr>
+     <tr class="popup__table-tr_js td__value-valueSmall">
+        <td class="td__value">мiнiм.з</td>
+        <td class="td__value">${valueSmall.month}.${month2}. (${valueSmall.date.split(',')[1]})</td>
         <td class="td__value ${itemBig.background2}">${valueSmall.value1}</td>
         <td class="td__value ${itemBig.background}">${valueSmall.value}</td>
       </tr>
@@ -1485,7 +1643,7 @@ function sortPopupDeyTable() {
 // рендерит таблицы в попап popupRenderDey
 function renderTable2(day, month, year, counterTableId, arrayDey) {
   let idTable = `table${counterTableId}`;
-
+  
   const months = ['січеня', 'лютого', 'березня', 'квітня', 'травня', 'червня', 'липня', 'серпня', 'вересня', 'жовтня', 'листопада', 'грудня'];
 
   const htmlTable = `
@@ -1513,8 +1671,8 @@ function renderDeyFunc2(arrayValueDey, idTable) {
         newArray.push(item);
       }
     });
-
-    if (newArray.length) {
+    
+    if(newArray.length){
       const tableInner1 = document.querySelector(`.table__inner1-${idTable}_js`);
       const tableInner2 = document.querySelector(`.table__inner2-${idTable}_js`);
       let bg1 = "";
@@ -1538,15 +1696,15 @@ function renderDeyFunc2(arrayValueDey, idTable) {
       const tableValue2 = document.createElement("div");
       tableValue2.className = "table__value";
 
-      newArray.forEach(item => {
-        if (item.background == "background__acent-2") {
+      newArray.forEach(item =>{
+        if (item.background == "background__acent-2"){
           bg1 = 'background__acent-1';
           bg2 = 'background__acent-2';
-        } else {
+        }else{
           bg1 = 'background__acent-2';
           bg2 = 'background__acent-1';
         }
-        if (!item.Minutes) {
+        if(!item.Minutes){
           item.Minutes = "--";
         }
         const ul1 = `
@@ -1571,10 +1729,10 @@ function renderDeyFunc2(arrayValueDey, idTable) {
 
       table1.insertAdjacentElement('beforeEnd', tableValue1);
       table2.insertAdjacentElement('beforeEnd', tableValue2);
-
+      
       tableInner1.insertAdjacentElement('beforeend', table1);
       tableInner2.insertAdjacentElement('beforeend', table2);
-    } else {
+    }else{
       const tableInner1 = document.querySelector(`.table__inner1-${idTable}_js`);
       const tableInner2 = document.querySelector(`.table__inner2-${idTable}_js`);
       let valueHtml1 = `
@@ -1661,7 +1819,7 @@ function sortPopupDeyTable2() {
           tableValue.insertAdjacentElement('beforeEnd', tableTrAll[0].element);
           let clock = tableTrAll[0].clock;
           tableTrAll.splice(0, 1);
-
+  
           if (tableTrAll.length) {
             fs4();
           } else {
@@ -1683,10 +1841,10 @@ function sortPopupDeyTable2() {
               // -----------------------------------------------------------------------------------------
               // берем значения из масива tableTrAll по индексу [0]
               let ulValue = tableTrAll[0].value;
-
-              for (let i = 1; i < tableTrAll.length; i++) {
+              
+              for (let i = 1; i < tableTrAll.length; i++){
                 // если в масиве tableTrAll есть ещо значения равны 
-                if (tableTrAll[i].value == ulValue && tableTrAll[i].clock == clock) {
+                if (tableTrAll[i].value == ulValue && tableTrAll[i].clock == clock){
                   tableValue.insertAdjacentElement('beforeEnd', tableTrAll[i].element);
                   tableTrAll.splice(i, 1);
                 }
@@ -1712,7 +1870,7 @@ const calendarMonthInner = document.querySelectorAll('.calendar__month-inner_js'
 const fon2 = document.querySelector('.fon2_js');
 
 calendarPopap.addEventListener('click', (e) => {
-  if (e.target.closest('.calendar-popup__close_js')) {
+  if (e.target.closest('.calendar-popup__close_js')){
     calendarPopap.classList.remove('_active');
   }
   if (e.target.closest('.fon2_js')) {
@@ -1724,18 +1882,17 @@ calendarPopap.addEventListener('click', (e) => {
       item.style.cssText = '';
     })
   }
-
+  
   if (e.target.closest('.calendar__month-inner_js')) {
     const calendarMonthInner = e.target.closest('.calendar__month-inner_js');
     const calendarMonthWrapper = e.target.closest('.calendar__month-wrapper_js');
 
     // ------------------------------------------
     if (e.target.closest('.calendar__dey_js ')
-      && e.target.classList.contains('_active')
-      && calendarMonthInner.classList.contains('_active')) {
+        && e.target.classList.contains('_active')
+        && calendarMonthInner.classList.contains('_active')) {
 
       const calendarPopap = document.querySelector('.calendar-popap_js');
-
       calendarPopap.classList.remove('_active');//скрывает календарь
       calendarBtn.innerHTML = e.target.dataset.dey;
       const popupReverse = document.querySelector('.popup__reverse_js');
@@ -1750,8 +1907,8 @@ calendarPopap.addEventListener('click', (e) => {
     calendarMonthInner.classList.toggle('_selection');// дозволяет запрещает hover на днях
     fon2.classList.toggle('_active');//скрывает показует фон
     // ------------------------------------------
-
-
+    
+    
     if (calendarPopap.offsetWidth < 600) {
       const MonthWrapperWidth = calendarMonthWrapper.offsetWidth;
       const windowInnerHeight = window.innerHeight;
@@ -1782,9 +1939,11 @@ calendarPopap.addEventListener('click', (e) => {
   }
 });
 
-function scrollDey1(data) {
+function scrollDey1(data){
   const scrolElement = document.querySelector(`._table${data}`);
-  scrolling(scrolElement.offsetTop - 73);
+  if (scrolElement){
+    scrolling(scrolElement.offsetTop - 73);
+  }
 }
 function scrollDey2(data) {
   const scrolElement = document.querySelector(`._teblepopup${data}`);
@@ -1801,6 +1960,16 @@ function scrollDey2(data) {
   }
 
 }
+function scrollDey3(data){
+  let data1 = data.split('-');
+  let data2 = `${data1[1]}-${data1[2]}`;
+  const scrolElement = document.querySelector(`._table${data2}`);
+  if (scrolElement){
+    scrolling(scrolElement.offsetTop - 73);
+    console.log('scrolling()');
+  }
+}
+
 
 function scrolling(top) {
   const popupTop = document.querySelector(".popup_js");
