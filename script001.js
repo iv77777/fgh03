@@ -1210,7 +1210,6 @@ sortValue.addEventListener("change", function () {
   }
   //сортировка Среднее за месяц.
   if (Number(this.value) == 27) {
-    console.log(27);
     openSortPopup2(arrayValue, 27);
   }
 });
@@ -1461,7 +1460,6 @@ function renderTable3(day, month, year, counterTableId, arrayDey) {
 }
 // рендерит таблицы в попап popupRenderDey
 function renderTable4(month, year, counterTableId, arrayMonth) {
-  console.log('renderTable4()');
   let idTable = `table${counterTableId}`;
   let itemBig;
   let valueSmall;
@@ -1540,7 +1538,6 @@ function renderhourse4(itemBig, valueAverage, valueSmall, idTable) {
   if (month2 < 10){
     month2 = `0${valueSmall.month}`;
   }
-  
   let valueHtml = `
      <tr class="popup__table-tr_js td__value-valueBig">
         <td class="td__value">макс.з</td>
@@ -1556,7 +1553,7 @@ function renderhourse4(itemBig, valueAverage, valueSmall, idTable) {
       </tr>
      <tr class="popup__table-tr_js td__value-valueSmall">
         <td class="td__value">мiнiм.з</td>
-        <td class="td__value">${valueSmall.month}.${month2}. (${valueSmall.date.split(',')[1]})</td>
+        <td class="td__value">${valueSmall.numberDeta}.${month2}. (${valueSmall.date.split(',')[1]})</td>
         <td class="td__value ${itemBig.background2}">${valueSmall.value1}</td>
         <td class="td__value ${itemBig.background}">${valueSmall.value}</td>
       </tr>
